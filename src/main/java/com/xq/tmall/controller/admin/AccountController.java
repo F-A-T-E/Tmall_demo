@@ -86,6 +86,11 @@ public class AccountController extends BaseController{
         return jsonObject.toJSONString();
     }
 
+    @Override
+    protected Object checkAdmin(HttpSession session) {
+        return super.checkAdmin(session);
+    }
+
     //更新管理员信息
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @ResponseBody

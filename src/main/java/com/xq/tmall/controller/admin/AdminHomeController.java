@@ -31,6 +31,17 @@ import java.util.*;
 public class AdminHomeController extends BaseController {
     @Resource(name = "adminService")
     private AdminService adminService;
+
+    @Override
+    protected Object checkAdmin(HttpSession session) {
+        return super.checkAdmin(session);
+    }
+
+    @Override
+    protected Object checkUser(HttpSession session) {
+        return super.checkUser(session);
+    }
+
     @Resource(name = "productOrderService")
     private ProductOrderService productOrderService;
     @Resource(name = "productService")

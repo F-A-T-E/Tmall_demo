@@ -21,6 +21,11 @@ public class AdminLoginController extends BaseController {
     @Resource(name = "adminService")
     private AdminService adminService;
 
+    @Override
+    protected Object checkAdmin(HttpSession session) {
+        return super.checkAdmin(session);
+    }
+
     //转到后台管理-登录页
     @RequestMapping("admin/login")
     public String goToPage(){
@@ -34,7 +39,8 @@ public class AdminLoginController extends BaseController {
     public String checkLogin(HttpSession session, @RequestParam String username, @RequestParam String password) {
         logger.info("管理员登录验证");
         Admin admin = adminService.login(username,password);
-
+        logger.info("username是："+username+"password是："+password);
+        logger.info("user是："+admin.toString());
         JSONObject object = new JSONObject();
         if(admin == null){
             logger.info("登录验证失败");
@@ -46,6 +52,11 @@ public class AdminLoginController extends BaseController {
         }
 
         return object.toJSONString();
+    }
+
+    @Override
+    protected Object checkUser(HttpSession session) {
+        return super.checkUser(session);
     }
 
     //获取管理员头像路径-ajax

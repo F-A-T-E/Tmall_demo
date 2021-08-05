@@ -35,8 +35,14 @@ public class ForeLoginController extends BaseController {
     @RequestMapping(value = "login/doLogin", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public String checkLogin(HttpSession session, @RequestParam String username, @RequestParam String password) {
         logger.info("用户验证登录");
+        logger.info("username是："+username+"password是："+password);
+
         User user = userService.login(username, password);
 
+        logger.info("user是："+user.toString());
+        /*
+        *
+        * */
         JSONObject jsonObject = new JSONObject();
         if (user == null) {
             logger.info("登录验证失败");
